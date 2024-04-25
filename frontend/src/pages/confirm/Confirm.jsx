@@ -9,7 +9,7 @@ const Confirm = () => {
     useEffect(() => {
         const confirmEmail = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/confirm-email${location.pathname}`, { method: 'PATCH' });
+                const response = await fetch(`${process.env.REACT_APP_PROD_URL ? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_LOCAL_URL}/api/confirm-email${location.pathname}`, { method: 'PATCH' });
                 const data = await response.json();
 
                 if (!response.ok) {

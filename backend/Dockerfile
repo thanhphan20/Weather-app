@@ -2,9 +2,10 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY package.json /app/
 COPY . .
 
 RUN npm install
 
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
+
+EXPOSE 5000

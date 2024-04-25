@@ -25,21 +25,19 @@ const Dashboard = () => {
         setWeatherHistory([]);
         localStorage.removeItem('weatherHistory');
     };
-
+   
     const handleSearch = async () => {
         if (!city) {
             alert("Input city is required");
             return;
         }
-        console.log(city);
         try {
-            const response = await fetch(`http://localhost:5000/api/forecast/${city}`, {
+            const response = await fetch(`${process.env.REACT_APP_PROD_URL ? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_LOCAL_URL}/api/forecast/${city}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 }
             });
-            console.log(response);
             if (!response.ok) {
                 throw new Error("Failed to fetch forecast");
             }
@@ -93,7 +91,7 @@ const Dashboard = () => {
             email: gmail,
         };
         try {
-            const response = await fetch('http://localhost:5000/api/checkConfirmed', {
+            const response = await fetch(`${process.env.REACT_APP_PROD_URL ? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_LOCAL_URL}/api/checkConfirmed`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -119,7 +117,7 @@ const Dashboard = () => {
             email: gmail,
         };
         try {
-            const response = await fetch('http://localhost:5000/api/checkSubscribed', {
+            const response = await fetch(`${process.env.REACT_APP_PROD_URL ? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_LOCAL_URL}/api/checkSubscribed`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -146,7 +144,7 @@ const Dashboard = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:5000/api/send', {
+            const response = await fetch(`${process.env.REACT_APP_PROD_URL ? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_LOCAL_URL}/api/send`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -175,7 +173,7 @@ const Dashboard = () => {
 
             if (isSubscribed) {
                 try {
-                    const response = await fetch('http://localhost:5000/api/unsubscribe', {
+                    const response = await fetch(`${process.env.REACT_APP_PROD_URL ? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_LOCAL_URL}/api/unsubscribe`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -201,8 +199,6 @@ const Dashboard = () => {
             alert("Please enter a valid email");
         }
     };
-
-    console.log(data);
 
     return (
         <div>

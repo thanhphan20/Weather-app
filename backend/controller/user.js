@@ -7,7 +7,7 @@ dotenv.config();
 
 export const sendEmail = async (req, res) => {
     const confirmToken = jwt.sign(req.body.email, process.env.JWT_SECRET);
-    const confirmLink = `${process.env.BASE_URL}/${confirmToken}`;
+    const confirmLink = `${process.env.PROD_URL ? process.env.PROD_URL : process.env.LOCAL_URL}/${confirmToken}`;
 
     const mailOptions = {
         from: process.env.USER,

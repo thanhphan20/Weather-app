@@ -25,7 +25,7 @@ const Dashboard = () => {
         setWeatherHistory([]);
         localStorage.removeItem('weatherHistory');
     };
-   
+    console.log(`${process.env.REACT_APP_PROD_URL ? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_LOCAL_URL}/api/forecast/${city}`)
     const handleSearch = async () => {
         if (!city) {
             alert("Input city is required");
